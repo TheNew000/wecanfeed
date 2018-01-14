@@ -5,7 +5,7 @@ import 'mocha';
 import DonationAgreement from '../../src/domain-model/donation-agreement';
 import DonationAgreementNote from '../../src/domain-model/donation-agreement-note';
 import DonationReceipt from '../../src/domain-model/donation-receipt';
-import donationAgreement from '../mocks/donation-agreement';
+import donationAgreement from '../../mocks/donation-agreement';
 
 const {
   timestamps,

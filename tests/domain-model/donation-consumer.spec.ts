@@ -5,7 +5,7 @@ import 'mocha';
 import DonationConsumer from '../../src/domain-model/donation-consumer';
 import Location from '../../src/domain-model/location';
 
-import donationConsumer from '../mocks/donation-consumer';
+import donationConsumer from '../../mocks/donation-consumer';
 
 const {
   timestamps,

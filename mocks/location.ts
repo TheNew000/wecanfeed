@@ -1,4 +1,4 @@
-import Location from '../../src/domain-model/location';
+import Location from '../src/domain-model/location';
 
 const now = Date.now();
 

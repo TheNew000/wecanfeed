@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import 'mocha';
 
 import User from '../../src/domain-model/user';
-import user from '../mocks/user';
+import user from '../../mocks/user';
 
 const {
   timestamps,

@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import 'mocha';
 
 import DonationAgreementNote from '../../src/domain-model/donation-agreement-note';
-import donationAgreementNote from '../mocks/donation-agreement-note';
+import donationAgreementNote from '../../mocks/donation-agreement-note';
 
 const {
   timestamps,

@@ -1,4 +1,4 @@
-import User from '../../src/domain-model/user';
+import User from '../src/domain-model/user';
 
 const now = Date.now();
 

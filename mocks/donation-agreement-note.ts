@@ -1,4 +1,4 @@
-import DonationAgreementNote from '../../src/domain-model/donation-agreement-note';
+import DonationAgreementNote from '../src/domain-model/donation-agreement-note';
 
 const now = Date.now();
 

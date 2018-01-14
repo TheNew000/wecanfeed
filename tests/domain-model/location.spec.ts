@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import 'mocha';
 
 import Location from '../../src/domain-model/location';
-import location from '../mocks/location';
+import location from '../../mocks/location';
 
 const {
   timestamps,
