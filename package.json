@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts",
-    "test": "mocha -r ts-node/register tests/**/*.spec.ts"
+    "test": "mocha -r ts-node/register tests/**/*.spec.ts",
+    "seed": "ts-node seeds"
   },
   "author": "",
   "license": "ISC",
