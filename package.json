@@ -1,0 +1,32 @@
+{
+  "name": "wecanfeed",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts",
+    "test": "mocha -r ts-node/register tests/**/*.spec.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/mongoose": "^4.7.32",
+    "koa": "^2.4.1",
+    "koa-router": "^7.3.0",
+    "mocha-eslint": "^4.1.0",
+    "mongoose": "^4.13.9"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.0",
+    "@types/expect": "^1.20.2",
+    "@types/koa": "^2.0.43",
+    "@types/koa-router": "^7.0.27",
+    "@types/mocha": "^2.2.46",
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0",
+    "nodemon": "^1.14.8",
+    "ts-mocha": "^1.1.0",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  }
+}
