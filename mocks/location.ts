@@ -1,21 +1,22 @@
-import Location from '../src/domain-model/location';
+import * as faker from 'faker';
+import * as moment from 'moment';
 
-const now = Date.now();
-
-export default new Location.Model({
-  timestamps: {
-    createdAt: now,
-    updatedAt: now
-  },
-  streetAddress: {
-    primary: '100 Main St.',
-    secondary: 'Suite 100'
-  },
-  city: 'Atlanta',
-  state: 'Georgia',
-  zipcode: '12345',
-  coordinates: {
-    latitude: 32.12345,
-    longitude: 32.12345
+export default () => {
+  return {
+    timestamps: {
+      createdAt: moment(faker.date.past()).format('x'),
+      updatedAt: moment(faker.date.recent()).format('x')
+    },
+    streetAddress: {
+      primary: faker.address.streetAddress(),
+      secondary: faker.address.secondaryAddress()
+    },
+    city: faker.address.city(),
+    state: faker.address.state(),
+    zipcode: faker.address.zipCode(),
+    coordinates: {
+      latitude: faker.address.latitude(),
+      longitude: faker.address.longitude()
+    }
   }
-});
+};

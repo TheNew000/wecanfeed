@@ -53,7 +53,7 @@ describe('Location Model and Schema', () => {
   });
 
   it('should define the zipcode property model', () => {
-    expect(zipcode.type).to.equal(Number, 'Expected type to equal String');
+    expect(zipcode.type).to.equal(String, 'Expected type to equal String');
     expect(zipcode.required).to.equal(true, 'Expected required to equal true');
     expect(zipcode.unique).to.equal(false, 'Expected unique to equal false');
   });

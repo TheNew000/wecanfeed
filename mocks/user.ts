@@ -17,8 +17,5 @@ export default new User.Model({
     text: '(555) 555-5555',
     voice: '(555) 555-5555',
     preferredType: 'email'
-  },
-  roles: {
-    active: ['DonationProviderAdmin']
   }
 });

@@ -43,7 +43,7 @@ export const Schema = new mongoose.Schema({
   },
 
   zipcode: {
-    type: Number,
+    type: String,
     required: true,
     unique: false
   },

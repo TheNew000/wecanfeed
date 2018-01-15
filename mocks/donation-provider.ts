@@ -1,13 +1,18 @@
+import * as faker from 'faker';
+import * as moment from 'moment';
+
 import DonationProvider from '../src/domain-model/donation-provider';
+import location from '../mocks/location';
 
-const now = Date.now();
-
-export default new DonationProvider.Model({
-  timestamps: {
-    createdAt: now,
-    updatedAt: now
-  },
-  name: 'Big Shelter',
-  summary: 'A good place',
-  website: 'http://www.website.com'
-});
+export default () => {
+  return new DonationProvider.Model({
+    timestamps: {
+      createdAt: moment(faker.date.past()).format('x'),
+      updatedAt: moment(faker.date.recent()).format('x')
+    },
+    name: faker.company.companyName(),
+    summary: faker.company.catchPhrase(),
+    website: faker.internet.url(),
+    location: location()
+  });
+};
