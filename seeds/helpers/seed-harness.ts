@@ -5,8 +5,7 @@ export default (Model, mocks) => {
 
   console.log(`Seeding ${Model.modelName} collection.`);
 
-  const allMockPromises = mocks.map((mock) => {
-    console.log(mock)
+  return mocks.map((mock) => {
     return new Promise((resolve, reject) => {
       mock.save()
       .then((record) => {
@@ -18,13 +17,5 @@ export default (Model, mocks) => {
         reject(error);
       });
     });
-  });
-
-  return Promise.all([allMockPromises])
-  .then(() => {
-    console.log(`Seeded ${mocks.length} records in ${Model.modelName} collection.`);
-  })
-  .catch((error) => {
-    console.error(error);
   });
 };

@@ -1,10 +1,13 @@
+import * as faker from 'faker';
+import * as moment from 'moment';
+
 import DonationAgreement from '../src/domain-model/donation-agreement';
 
 const now = Date.now();
 
 export default new DonationAgreement.Model({
   timestamps: {
-    createdAt: now,
-    updatedAt: now
+    createdAt: moment(faker.date.past()).format('x'),
+    updatedAt: moment(faker.date.recent()).format('x')
   }
 });
