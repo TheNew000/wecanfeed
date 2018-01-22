@@ -8,6 +8,7 @@ import seedHarness from './helpers/seed-harness';
 import closeConnection from './helpers/close-connection';
 import populateMockArrays from './helpers/populate-mock-arrays';
 import assignUsers from './helpers/assign-users';
+import assignAgreements from './helpers/assign-agreements';
 
 import User from '../src/domain-model/user';
 
@@ -72,38 +73,7 @@ Promise.all(
         Promise.all(
           seedHarness(DonationAgreement.Model, populateMockArrays(agreementCount, donationAgreement))
         ).then((agreements) => {
-          agreements.map((agreement) => {
-            const provider = faker.random.arrayElement(providers);
-            const consumer = faker.random.arrayElement(consumers);
-
-            provider.agreements.push(agreement.id);
-            consumer.agreements.push(agreement.id);
-
-            const commentByOrg = faker.random.arrayElement([provider, consumer]);
-            const commentByUserType = faker.random.arrayElement(['admins', 'contributors', 'transporters']);
-            const commentByUser = faker.random.arrayElement(commentByOrg.team[commentByUserType]);
-
-            const receiptByUserType = faker.random.arrayElement(['admins', 'contributors', 'transporters']);
-            const receiptByProviderUser = faker.random.arrayElement(provider.team[commentByUserType]);
-            const receiptByConsumerUser = faker.random.arrayElement(consumer.team[commentByUserType]);
-
-            const noteCount = faker.random.arrayElement([1, 3, 7, 12]);
-            const receiptCount = faker.random.arrayElement([3, 7, 12, 26]);
-
-            for (let i = 0; i < noteCount; i++) {
-              agreement.notes.push(donationAgreementNote(commentByUser));
-            }
-
-            for (let i = 0; i < receiptCount; i++) {
-              agreement.receipts.push(donationReceipt(receiptByProviderUser, receiptByConsumerUser));
-            }
-          });
-
-          Promise.all([
-            ...(providers.map((provider) => provider.save())),
-            ...(consumers.map((consumer) => consumer.save())),
-            ...(agreements.map((agreement) => agreement.save()))
-          ]).then(() => {
+          assignAgreements(agreements, providers, consumers).then(() => {
             console.log('All seeds completed.');
             closeConnection(mongoose.connection);
           });
