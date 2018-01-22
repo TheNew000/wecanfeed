@@ -50,7 +50,7 @@ describe('DonationProvider Model and Schema', () => {
   });
 
   it('should define the agreements property model', () => {
-    expect(agreements.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal ObjectId');
+    expect(agreements.type[0]).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal ObjectId');
     expect(agreements.ref).to.equal('DonationAgreement', 'Expected ref to equal DonationAgreement');
     expect(agreements.required).to.equal(false, 'Expected required to equal false');
     expect(agreements.unique).to.equal(false, 'Expected unique to equal false');

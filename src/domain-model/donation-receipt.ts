@@ -48,14 +48,14 @@ export const Schema = new mongoose.Schema({
     claimedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: true,
+      required: false,
       unique: false
     },
 
     transferredBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: true,
+      required: false,
       unique: false
     }
   }

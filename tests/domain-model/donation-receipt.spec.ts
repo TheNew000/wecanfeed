@@ -54,14 +54,14 @@ describe('DonationReceipt Model and Schema', () => {
   it('should define the claimedBy property model', () => {
     expect(authorizations.claimedBy.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal ObjectId');
     expect(authorizations.claimedBy.ref).to.equal('User', 'Expected ref to equal User');
-    expect(authorizations.claimedBy.required).to.equal(true, 'Expected required to equal false');
+    expect(authorizations.claimedBy.required).to.equal(false, 'Expected required to equal false');
     expect(authorizations.claimedBy.unique).to.equal(false, 'Expected unique to equal false');
   });
 
   it('should define the transferredBy property model', () => {
     expect(authorizations.transferredBy.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal ObjectId');
     expect(authorizations.transferredBy.ref).to.equal('User', 'Expected ref to equal User');
-    expect(authorizations.transferredBy.required).to.equal(true, 'Expected required to equal false');
+    expect(authorizations.transferredBy.required).to.equal(false, 'Expected required to equal false');
     expect(authorizations.transferredBy.unique).to.equal(false, 'Expected unique to equal false');
   });
 

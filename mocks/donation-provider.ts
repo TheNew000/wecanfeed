@@ -14,6 +14,7 @@ export default () => {
     name: faker.company.companyName(),
     summary: faker.company.catchPhrase(),
     website: faker.internet.url(),
-    location: location()
+    location: location(),
+    agreements: []
   });
 };

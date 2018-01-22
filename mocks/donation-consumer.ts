@@ -17,6 +17,7 @@ export default () => {
     website: faker.internet.url(),
     averageOccupancy: faker.random.number(),
     isAccepting: faker.random.boolean(),
-    location: location()
+    location: location(),
+    agreements: []
   });
 };

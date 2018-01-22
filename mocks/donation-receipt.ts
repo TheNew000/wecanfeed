@@ -1,13 +1,21 @@
 import * as faker from 'faker';
 import * as moment from 'moment';
 
-import DonationReceipt from '../src/domain-model/donation-receipt';
+import donation from './donation';
 
-const now = Date.now();
-
-export default new DonationReceipt.Model({
-  timestamps: {
-    createdAt: moment(faker.date.past()).format('x'),
-    updatedAt: moment(faker.date.recent()).format('x')
-  }
-});
+export default (providerUser, consumerUser) => {
+  return {
+    timestamps: {
+      createdAt: moment(faker.date.past()).format('x'),
+      updatedAt: moment(faker.date.recent()).format('x'),
+      claimedAt: moment(faker.date.recent()).format('x'),
+      transferredAt: moment(faker.date.recent()).format('x')
+    },
+    authorizations: {
+      createdBy: providerUser,
+      claimedBy: consumerUser,
+      transferredBy: consumerUser
+    },
+    donation: donation()
+  };
+};

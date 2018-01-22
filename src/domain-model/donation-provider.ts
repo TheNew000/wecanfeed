@@ -44,7 +44,7 @@ export const Schema = new mongoose.Schema({
   },
 
   agreements: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: [mongoose.Schema.Types.ObjectId],
     ref: 'DonationAgreement',
     required: false,
     unique: false
