@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import 'mocha';
 
 import User from '../../src/domain-model/user';
-import user from '../../mocks/user';
+import user, { staticEmailUser } from '../../mocks/user';
 
 const {
   timestamps,
@@ -73,7 +73,7 @@ describe('User Model and Schema', () => {
   });
 
   it('should a virtual for the preferred contact info', () => {
-    expect(user.contact.preferred).to.equal('bob@smith.com', 'Expected preferred to equal bob@smith.com');
+    expect(staticEmailUser.contact.preferred).to.equal('bob@smith.com', 'Expected preferred to equal bob@smith.com');
   });
 
 });
