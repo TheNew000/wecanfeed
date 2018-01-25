@@ -9,18 +9,19 @@ const server = chai.request('localhost:3000');
 
 describe('Consumers Public API', () => {
 
-  it('should define the public api routes', () => {
-    server.get('/api/donation-consumers').then((res) => {
-      expect(res).to.have.status(200);
-      expect(res.body.length).to.equal(500);
+  let consumerId;
 
-      const consumerId = res.body[0].id;
+  it('should define the public api routes', async () => {
+    const res = await server.get('/api/donation-consumers');
+    expect(res).to.have.status(200);
+    expect(res.body.length).to.equal(500);
+    consumerId = res.body[0].id;
+  });
 
-      server.get(`/api/donation-consumers/${consumerId}`).then((res) => {
-        expect(res).to.have.status(200);
-        expect(res.body.id).to.equal(consumerId);
-      });
-    });
+  it('should define the public api routes', async () => {
+    const res = await server.get(`/api/donation-consumers/${consumerId}`)
+    expect(res).to.have.status(200);
+    expect(res.body.id).to.equal(consumerId);
   });
 
 });
