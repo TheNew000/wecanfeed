@@ -11,14 +11,14 @@ describe('Consumers Public API', () => {
 
   let consumerId;
 
-  it('should define the public api routes', async () => {
+  it('should define the public /api/donation-consumers routes', async () => {
     const res = await server.get('/api/donation-consumers');
     expect(res).to.have.status(200);
     expect(res.body.length).to.equal(500);
     consumerId = res.body[0].id;
   });
 
-  it('should define the public api routes', async () => {
+  it('should define the public /api/donation-consumers/:id routes', async () => {
     const res = await server.get(`/api/donation-consumers/${consumerId}`)
     expect(res).to.have.status(200);
     expect(res.body.id).to.equal(consumerId);
