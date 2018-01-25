@@ -39,10 +39,13 @@ export const Schema = new mongoose.Schema({
   image: {
     type: String,
     required: false,
-    unique: false    
+    unique: false
   }
 
 }, {
+  _id: false,
+  id: false,
+
   toObject: {
     virtuals: true
   },

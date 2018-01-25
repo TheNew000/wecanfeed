@@ -62,6 +62,9 @@ export const Schema = new mongoose.Schema({
 
 }, {
 
+  _id: false,
+  id: false,
+
   toObject: {
     virtuals: true
   },

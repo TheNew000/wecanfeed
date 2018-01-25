@@ -8,8 +8,8 @@ export default (agreements, providers, consumers) => {
     const provider = faker.random.arrayElement(providers);
     const consumer = faker.random.arrayElement(consumers);
 
-    provider.agreements.push(agreement.id);
-    consumer.agreements.push(agreement.id);
+    provider.agreements.push(agreement._id);
+    consumer.agreements.push(agreement._id);
 
     const commentByOrg = faker.random.arrayElement([provider, consumer]);
     const commentByUserType = faker.random.arrayElement(['admins', 'contributors', 'transporters']);

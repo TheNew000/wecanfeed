@@ -21,8 +21,8 @@ router.get('/api/donation-consumers', async (ctx) => {
   ctx.body = consumers;
 });
 
-router.get('/api/donation-consumers/:id', async (ctx) => {
-  const consumer = await DonationConsumer.Model.findOne({ _id: ctx.params.id });
+router.get('/api/donation-consumers/:_id', async (ctx) => {
+  const consumer = await DonationConsumer.Model.findOne({ _id: ctx.params._id });
   ctx.body = consumer;
 });
 
@@ -31,8 +31,8 @@ router.get('/api/donation-providers', async (ctx) => {
   ctx.body = providers;
 });
 
-router.get('/api/donation-providers/:id', async (ctx) => {
-  const provider = await DonationProvider.Model.findOne({ _id: ctx.params.id });
+router.get('/api/donation-providers/:_id', async (ctx) => {
+  const provider = await DonationProvider.Model.findOne({ _id: ctx.params._id });
   ctx.body = provider;
 });
 

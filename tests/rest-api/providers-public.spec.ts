@@ -15,13 +15,13 @@ describe('Providers Public API', () => {
     const res = await server.get('/api/donation-providers');
     expect(res).to.have.status(200);
     expect(res.body.length).to.equal(50);
-    providerId = res.body[0].id;
+    providerId = res.body[0]._id;
   });
 
   it('should define the public /api/donation-providers/:id routes', async () => {
     const res = await server.get(`/api/donation-providers/${providerId}`)
     expect(res).to.have.status(200);
-    expect(res.body.id).to.equal(providerId);
+    expect(res.body._id).to.equal(providerId);
   });
 
 });
