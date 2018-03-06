@@ -2,10 +2,10 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import DonationProvider from '../../src/domain-model/donation-provider';
+import Provider from '../../src/domain-model/provider';
 import Location from '../../src/domain-model/location';
 
-import donationProvider from '../../mocks/donation-provider';
+import provider from '../../mocks/provider';
 
 const {
   timestamps,
@@ -15,9 +15,9 @@ const {
   agreements,
   location,
   team
-} = DonationProvider.Schema.obj;
+} = Provider.Schema.obj;
 
-describe('DonationProvider Model and Schema', () => {
+describe('Provider Model and Schema', () => {
 
   it('should define the createdAt property model', () => {
     expect(timestamps.createdAt.type).to.equal(Date, 'Expected type to equal Date');

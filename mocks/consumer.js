@@ -1,12 +1,12 @@
 import faker from 'faker';
 import moment from 'moment';
 
-import DonationConsumer from '../src/domain-model/donation-consumer';
+import Consumer from '../src/domain-model/consumer';
 import location from '../mocks/location';
 import user from '../mocks/location';
 
 export default () => {
-  return new DonationConsumer.Model({
+  return new Consumer.Model({
     timestamps: {
       createdAt: moment(faker.date.past()).format('x'),
       updatedAt: moment(faker.date.recent()).format('x'),

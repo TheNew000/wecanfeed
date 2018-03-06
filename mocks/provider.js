@@ -1,11 +1,11 @@
 import faker from 'faker';
 import moment from 'moment';
 
-import DonationProvider from '../src/domain-model/donation-provider';
+import Provider from '../src/domain-model/provider';
 import location from '../mocks/location';
 
 export default () => {
-  return new DonationProvider.Model({
+  return new Provider.Model({
     timestamps: {
       createdAt: moment(faker.date.past()).format('x'),
       updatedAt: moment(faker.date.recent()).format('x'),

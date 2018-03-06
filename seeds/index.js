@@ -12,11 +12,11 @@ import assignAgreements from './helpers/assign-agreements';
 
 import User from '../src/domain-model/user';
 
-import DonationConsumer from '../src/domain-model/donation-consumer';
-import donationConsumer from '../mocks/donation-consumer';
+import Consumer from '../src/domain-model/consumer';
+import consumer from '../mocks/consumer';
 
-import DonationProvider from '../src/domain-model/donation-provider';
-import donationProvider from '../mocks/donation-provider';
+import Provider from '../src/domain-model/provider';
+import provider from '../mocks/provider';
 
 import DonationAgreement from '../src/domain-model/donation-agreement';
 import donationAgreement from '../mocks/donation-agreement';
@@ -27,8 +27,8 @@ import donationReceipt from '../mocks/donation-receipt';
 import donationAgreementNote from '../mocks/donation-agreement-note';
 
 const domainModel = [
-  DonationProvider,
-  DonationConsumer,
+  Provider,
+  Consumer,
   DonationAgreement,
   User
 ];
@@ -53,7 +53,7 @@ resetCollections(domainModel);
 console.log('Preparing to seed database.');
 
 Promise.all(
-  seedHarness(DonationProvider.Model, populateMockArrays(providerCount, donationProvider))
+  seedHarness(Provider.Model, populateMockArrays(providerCount, provider))
 ).then((providers) => {
   Promise.all([
     assignUsers(providerAdminCount, providers, 'admins', 'primary'),
@@ -62,7 +62,7 @@ Promise.all(
     providers.map((provider) => provider.save())
   ]).then(() => {
     Promise.all(
-      seedHarness(DonationConsumer.Model, populateMockArrays(consumerCount, donationConsumer))
+      seedHarness(Consumer.Model, populateMockArrays(consumerCount, consumer))
     ).then((consumers) => {
       Promise.all([
         assignUsers(consumerAdminCount, consumers, 'admins', 'primary'),

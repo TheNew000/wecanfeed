@@ -43,6 +43,18 @@ export const Schema = new mongoose.Schema({
     unique: false
   },
 
+  averageOccupancy: {
+    type: Number,
+    required: false,
+    unique: false
+  },
+
+  isAccepting: {
+    type: Boolean,
+    required: true,
+    unique: false
+  },
+
   agreements: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'DonationAgreement',
@@ -109,7 +121,7 @@ export const Schema = new mongoose.Schema({
   }
 });
 
-export const Model = mongoose.model('DonationProvider', Schema);
+export const Model = mongoose.model('Consumer', Schema);
 
 export default {
   Model,

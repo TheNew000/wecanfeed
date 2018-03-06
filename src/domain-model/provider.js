@@ -1,21 +1,8 @@
-'use strict';
+import mongoose from 'mongoose';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Model = exports.Schema = undefined;
+import Location from './location';
 
-var _mongoose = require('mongoose');
-
-var _mongoose2 = _interopRequireDefault(_mongoose);
-
-var _location = require('./location');
-
-var _location2 = _interopRequireDefault(_location);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Schema = exports.Schema = new _mongoose2.default.Schema({
+export const Schema = new mongoose.Schema({
 
   timestamps: {
     createdAt: {
@@ -57,14 +44,14 @@ var Schema = exports.Schema = new _mongoose2.default.Schema({
   },
 
   agreements: {
-    type: [_mongoose2.default.Schema.Types.ObjectId],
+    type: [mongoose.Schema.Types.ObjectId],
     ref: 'DonationAgreement',
     required: false,
     unique: false
   },
 
   location: {
-    type: _location2.default.Schema,
+    type: Location.Schema,
     required: true,
     unique: false
   },
@@ -72,14 +59,14 @@ var Schema = exports.Schema = new _mongoose2.default.Schema({
   team: {
     contacts: {
       primary: {
-        type: _mongoose2.default.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: false,
         unique: false
       },
 
       secondary: {
-        type: _mongoose2.default.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: false,
         unique: false
@@ -87,7 +74,7 @@ var Schema = exports.Schema = new _mongoose2.default.Schema({
     },
 
     admins: {
-      type: [_mongoose2.default.Schema.Types.ObjectId],
+      type: [mongoose.Schema.Types.ObjectId],
       ref: 'User',
       required: false,
       unique: false
@@ -95,14 +82,14 @@ var Schema = exports.Schema = new _mongoose2.default.Schema({
     },
 
     contributors: {
-      type: [_mongoose2.default.Schema.Types.ObjectId],
+      type: [mongoose.Schema.Types.ObjectId],
       ref: 'User',
       required: false,
       unique: false
     },
 
     transporters: {
-      type: [_mongoose2.default.Schema.Types.ObjectId],
+      type: [mongoose.Schema.Types.ObjectId],
       ref: 'User',
       required: false,
       unique: false
@@ -122,9 +109,9 @@ var Schema = exports.Schema = new _mongoose2.default.Schema({
   }
 });
 
-var Model = exports.Model = _mongoose2.default.model('DonationProvider', Schema);
+export const Model = mongoose.model('Provider', Schema);
 
-exports.default = {
-  Model: Model,
-  Schema: Schema
+export default {
+  Model,
+  Schema
 };

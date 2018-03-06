@@ -7,8 +7,8 @@ import faker from 'faker';
 
 import config from './config';
 
-import DonationConsumer from './domain-model/donation-consumer';
-import DonationProvider from './domain-model/donation-provider';
+import Consumer from './domain-model/consumer';
+import Provider from './domain-model/provider';
 
 const app = new Koa();
 const router = new Router();
@@ -16,23 +16,23 @@ const router = new Router();
 mongoose.connect(config.database.url, { useMongoClient: true });
 mongoose.Promise = Promise;
 
-router.get('/api/donation-consumers', async (ctx) => {
-  const consumers = await DonationConsumer.Model.find();
+router.get('/api/consumers', async (ctx) => {
+  const consumers = await Consumer.Model.find();
   ctx.body = consumers;
 });
 
-router.get('/api/donation-consumers/:_id', async (ctx) => {
-  const consumer = await DonationConsumer.Model.findOne({ _id: ctx.params._id });
+router.get('/api/consumers/:_id', async (ctx) => {
+  const consumer = await Consumer.Model.findOne({ _id: ctx.params._id });
   ctx.body = consumer;
 });
 
-router.get('/api/donation-providers', async (ctx) => {
-  const providers = await DonationProvider.Model.find();
+router.get('/api/providers', async (ctx) => {
+  const providers = await Provider.Model.find();
   ctx.body = providers;
 });
 
-router.get('/api/donation-providers/:_id', async (ctx) => {
-  const provider = await DonationProvider.Model.findOne({ _id: ctx.params._id });
+router.get('/api/providers/:_id', async (ctx) => {
+  const provider = await Provider.Model.findOne({ _id: ctx.params._id });
   ctx.body = provider;
 });
 
