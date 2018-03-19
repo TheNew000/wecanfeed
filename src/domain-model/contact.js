@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
 
-import Donation from './donation';
-
 export const Schema = new mongoose.Schema({
+
   timestamps: {
     createdAt: {
       type: Date,
@@ -17,18 +16,6 @@ export const Schema = new mongoose.Schema({
     },
 
     removedAt: {
-      type: Date,
-      required: false,
-      unique: false
-    },
-
-    claimedAt: {
-      type: Date,
-      required: false,
-      unique: false
-    },
-
-    transferredAt: {
       type: Date,
       required: false,
       unique: false
@@ -61,32 +48,38 @@ export const Schema = new mongoose.Schema({
       ref: 'User',
       required: false,
       unique: false
-    },
-
-    claimedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: false,
-      unique: false
-    },
-
-    transferredBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: false,
-      unique: false
     }
   },
 
-  donation: {
-    type: Donation.Schema,
+  name: {
+    type: String,
+    required: true,
+    unique: false
+  },
+
+  value: {
+    type: String,
+    required: true,
+    unique: true
+  },
+
+  type: {
+    type: String,
+    enum: ['email', 'href', 'voice', 'text'],
+    required: true,
+    unique: false
+  },
+
+  isPreferred: {
+    type: Boolean,
     required: true,
     unique: false
   }
-}, {
-  _id: false,
-  id: false,
 
+}, {
+  id: false,
+  _id: false,
+  
   toObject: {
     virtuals: true
   },
@@ -96,7 +89,7 @@ export const Schema = new mongoose.Schema({
   }
 });
 
-export const Model = mongoose.model('DonationReceipt', Schema);
+export const Model = mongoose.model('Contact', Schema);
 
 export default {
   Model,

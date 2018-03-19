@@ -2,19 +2,21 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import Donation from '../../src/domain-model/donation';
-import donation from '../../mocks/donation';
+import Product from '../../src/domain-model/product';
+import ValueDefinition from '../../src/domain-model/value-definition';
 
 const {
   timestamps,
   audit,
-  estimatedValue,
-  relativeSize,
-  summary,
-  image
-} = Donation.Schema.obj;
+  name,
+  description,
+  category,
+  tags,
+  prices,
+  totalQuantityAvailable
+} = Product.Schema.obj;
 
-describe('Donation Model and Schema', () => {
+describe('Product Model and Schema', () => {
 
   it('should define the createdAt property model', () => {
     expect(timestamps.createdAt.type).to.equal(Date, 'Expected type to equal Date');
@@ -54,34 +56,41 @@ describe('Donation Model and Schema', () => {
     expect(audit.updatedWith.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the estimatedValue property model', () => {
-    expect(estimatedValue.type).to.equal(Number, 'Expected type to equal Number');
-    expect(estimatedValue.required).to.equal(true, 'Expected required to equal true');
-    expect(estimatedValue.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the name property model', () => {
+    expect(name.type).to.equal(String, 'Expected type to equal String');
+    expect(name.required).to.equal(true, 'Expected required to equal true');
+    expect(name.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the relativeSize property model', () => {
-    expect(relativeSize.type).to.equal(String, 'Expected type to equal String');
-    expect(relativeSize.enum.length).to.equal(5, 'Expected type to have 5 records');
-    expect(relativeSize.enum[0]).to.equal('few-bags', 'Expected enum to include few-bags');
-    expect(relativeSize.enum[1]).to.equal('many-bags', 'Expected enum to include many-bags');
-    expect(relativeSize.enum[2]).to.equal('car-full', 'Expected enum to include car-full');
-    expect(relativeSize.enum[3]).to.equal('van-full', 'Expected enum to include van-full');
-    expect(relativeSize.enum[4]).to.equal('box-truck', 'Expected enum to include box-truck');
-    expect(relativeSize.required).to.equal(true, 'Expected required to equal true');
-    expect(relativeSize.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the description property model', () => {
+    expect(description.type).to.equal(String, 'Expected type to equal String');
+    expect(description.required).to.equal(true, 'Expected required to equal true');
+    expect(description.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the summary property model', () => {
-    expect(summary.type).to.equal(String, 'Expected type to equal String');
-    expect(summary.required).to.equal(false, 'Expected required to equal false');
-    expect(summary.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the category property model', () => {
+    expect(category.type).to.equal(String, 'Expected type to equal String');
+    expect(category.required).to.equal(true, 'Expected required to equal true');
+    expect(category.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the image property model', () => {
-    expect(image.type).to.equal(String, 'Expected type to equal String');
-    expect(image.required).to.equal(false, 'Expected required to equal false');
-    expect(image.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the tags property model', () => {
+    expect(tags.type[0]).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal mongoose.Schema.Types.ObjectId');
+    expect(tags.ref).to.equal('Tag', 'Expected type to equal Tag');
+    expect(tags.required).to.equal(true, 'Expected required to equal true');
+    expect(tags.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the prices property model', () => {
+    expect(prices.type[0]).to.equal(ValueDefinition.Schema, 'Expected type to equal ValueDefinition.Schema');
+    expect(prices.required).to.equal(true, 'Expected required to equal true');
+    expect(prices.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the totalQuantityAvailable property model', () => {
+    expect(totalQuantityAvailable.type).to.equal(Number, 'Expected type to equal Number');
+    expect(totalQuantityAvailable.required).to.equal(true, 'Expected required to equal true');
+    expect(totalQuantityAvailable.unique).to.equal(false, 'Expected unique to equal false');
   });
 
 });

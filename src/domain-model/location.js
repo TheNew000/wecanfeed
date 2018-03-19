@@ -11,7 +11,42 @@ export const Schema = new mongoose.Schema({
 
     updatedAt: {
       type: Date,
+      required: false,
+      unique: false
+    },
+
+    removedAt: {
+      type: Date,
+      required: false,
+      unique: false
+    }
+  },
+
+  audit: {
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
+      unique: false
+    },
+
+    updatedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: false,
+      unique: false
+    },
+
+    updatedWith: {
+      type: String,
+      required: false,
+      unique: false
+    },
+
+    removedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: false,
       unique: false
     }
   },

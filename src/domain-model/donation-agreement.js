@@ -4,7 +4,6 @@ import DonationAgreementNote from './donation-agreement-note';
 import DonationReceipt from './donation-receipt';
 
 export const Schema = new mongoose.Schema({
-
   timestamps: {
     createdAt: {
       type: Date,
@@ -14,12 +13,41 @@ export const Schema = new mongoose.Schema({
 
     updatedAt: {
       type: Date,
+      required: false,
+      unique: false
+    },
+
+    removedAt: {
+      type: Date,
+      required: false,
+      unique: false
+    }
+  },
+
+  audit: {
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
       unique: false
     },
 
-    revokedAt: {
-      type: Date,
+    updatedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: false,
+      unique: false
+    },
+
+    updatedWith: {
+      type: String,
+      required: false,
+      unique: false
+    },
+
+    removedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: false,
       unique: false
     }
@@ -36,7 +64,6 @@ export const Schema = new mongoose.Schema({
     required: false,
     unique: false
   }
-
 }, {
   id: false,
 
@@ -47,7 +74,6 @@ export const Schema = new mongoose.Schema({
   toJSON: {
     virtuals: true
   }
-
 });
 
 export const Model = mongoose.model('DonationAgreement', Schema);

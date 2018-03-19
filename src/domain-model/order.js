@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 
-import Donation from './donation';
+import Product from './product';
 
 export const Schema = new mongoose.Schema({
+
   timestamps: {
     createdAt: {
       type: Date,
@@ -17,18 +18,6 @@ export const Schema = new mongoose.Schema({
     },
 
     removedAt: {
-      type: Date,
-      required: false,
-      unique: false
-    },
-
-    claimedAt: {
-      type: Date,
-      required: false,
-      unique: false
-    },
-
-    transferredAt: {
       type: Date,
       required: false,
       unique: false
@@ -61,30 +50,38 @@ export const Schema = new mongoose.Schema({
       ref: 'User',
       required: false,
       unique: false
-    },
-
-    claimedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: false,
-      unique: false
-    },
-
-    transferredBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: false,
-      unique: false
     }
   },
 
-  donation: {
-    type: Donation.Schema,
-    required: true,
+  consumer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Consumer',
+    required: false,
+    unique: false
+  },
+
+  consumerGroup: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ConsumerGroup',
+    required: false,
+    unique: false
+  },
+
+  provider: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Provider',
+    required: false,
+    unique: false
+  },
+
+  products: {
+    type: [Product.Schema],
+    ref: 'User',
+    required: false,
     unique: false
   }
+
 }, {
-  _id: false,
   id: false,
 
   toObject: {
@@ -96,7 +93,7 @@ export const Schema = new mongoose.Schema({
   }
 });
 
-export const Model = mongoose.model('DonationReceipt', Schema);
+export const Model = mongoose.model('Order', Schema);
 
 export default {
   Model,

@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import Contact from './contact';
+
 export const Schema = new mongoose.Schema({
 
   timestamps: {
@@ -11,7 +13,21 @@ export const Schema = new mongoose.Schema({
 
     updatedAt: {
       type: Date,
-      required: true,
+      required: false,
+      unique: false
+    },
+
+    removedAt: {
+      type: Date,
+      required: false,
+      unique: false
+    }
+  },
+
+  audit: {
+    updatedWith: {
+      type: String,
+      required: false,
       unique: false
     }
   },
@@ -36,37 +52,17 @@ export const Schema = new mongoose.Schema({
     }
   },
 
-  contact: {
-    email: {
-      type: String,
-      required: true,
-      unique: true
-    },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
 
-    text: {
-      type: String,
-      required: false,
-      unique: true
-    },
-
-    voice: {
-      type: String,
-      required: false,
-      unique: true
-    },
-
-    preferredType: {
-      type: String,
-      enum: [
-        'email',
-        'text',
-        'voice'
-      ],
-      required: false,
-      unique: false
-    }
+  contacts: {
+    type: [Contact.Schema],
+    required: false, 
+    unique: false
   }
-
 }, {
   id: false,
 
@@ -77,11 +73,6 @@ export const Schema = new mongoose.Schema({
   toJSON: {
     virtuals: true
   }
-
-});
-
-Schema.virtual('contact.preferred').get(function() {
-  return this.contact[this.contact.preferredType];
 });
 
 export const Model = mongoose.model('User', Schema);

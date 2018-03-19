@@ -55,16 +55,28 @@ export const Schema = new mongoose.Schema({
     }
   },
 
-  account: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+  name: {
+    type: String,
     required: true,
     unique: false
   },
 
-  acceptsDonations: {
-    type: Boolean,
-    required: true,
+  description: {
+    type: String,
+    required: false,
+    unique: false
+  },
+
+  industryVerticals: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Tag',
+    required: false,
+    unique: false
+  },
+
+  contacts: {
+    type: [Contact.Schema],
+    required: false,
     unique: false
   },
 
@@ -75,9 +87,29 @@ export const Schema = new mongoose.Schema({
     unique: false
   },
 
+  acceptsDonations: {
+    type: Boolean,
+    required: true,
+    unique: false
+  },
+
   location: {
     type: Location.Schema,
-    required: true,
+    required: false,
+    unique: false
+  },
+
+  members: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Consumer',
+    required: false,
+    unique: false
+  },
+
+  shoppingList: {
+    type: [Product.Schema],
+    ref: 'Product',
+    required: false,
     unique: false
   },
 
@@ -94,13 +126,40 @@ export const Schema = new mongoose.Schema({
       ref: 'Order',
       required: false,
       unique: false
-    }
+    },
   },
 
-  shoppingList: {
-    type: [Product.Schema],
-    required: false,
-    unique: false
+  team: {
+    contacts: {
+      primary: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false,
+        unique: false
+      },
+
+      secondary: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false,
+        unique: false
+      }
+    },
+
+    admins: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: 'User',
+      required: false,
+      unique: false
+
+    },
+
+    members: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: 'User',
+      required: false,
+      unique: false
+    }
   }
 
 }, {
@@ -115,7 +174,7 @@ export const Schema = new mongoose.Schema({
   }
 });
 
-export const Model = mongoose.model('Consumer', Schema);
+export const Model = mongoose.model('ConsumerGroup', Schema);
 
 export default {
   Model,

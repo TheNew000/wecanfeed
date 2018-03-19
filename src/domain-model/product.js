@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 
-import Donation from './donation';
+import ValueDefinition from './value-definition';
 
 export const Schema = new mongoose.Schema({
+
   timestamps: {
     createdAt: {
       type: Date,
@@ -17,18 +18,6 @@ export const Schema = new mongoose.Schema({
     },
 
     removedAt: {
-      type: Date,
-      required: false,
-      unique: false
-    },
-
-    claimedAt: {
-      type: Date,
-      required: false,
-      unique: false
-    },
-
-    transferredAt: {
       type: Date,
       required: false,
       unique: false
@@ -61,30 +50,47 @@ export const Schema = new mongoose.Schema({
       ref: 'User',
       required: false,
       unique: false
-    },
-
-    claimedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: false,
-      unique: false
-    },
-
-    transferredBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: false,
-      unique: false
     }
   },
 
-  donation: {
-    type: Donation.Schema,
+  name: {
+    type: String,
+    required: true,
+    unique: false
+  },
+
+  description: {
+    type: String,
+    required: true,
+    unique: false
+  },
+
+  category: {
+    type: String,
+    required: true,
+    unique: false
+  },
+
+  tags: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Tag',
+    required: true,
+    unique: false
+  },
+
+  prices: {
+    type: [ValueDefinition.Schema],
+    required: true,
+    unique: false
+  },
+
+  totalQuantityAvailable: {
+    type: Number,
     required: true,
     unique: false
   }
+
 }, {
-  _id: false,
   id: false,
 
   toObject: {
@@ -96,7 +102,7 @@ export const Schema = new mongoose.Schema({
   }
 });
 
-export const Model = mongoose.model('DonationReceipt', Schema);
+export const Model = mongoose.model('Product', Schema);
 
 export default {
   Model,

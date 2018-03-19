@@ -2,19 +2,18 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import Donation from '../../src/domain-model/donation';
-import donation from '../../mocks/donation';
+import Contact from '../../src/domain-model/contact';
 
 const {
   timestamps,
   audit,
-  estimatedValue,
-  relativeSize,
-  summary,
-  image
-} = Donation.Schema.obj;
+  name,
+  value,
+  type,
+  isPreferred
+} = Contact.Schema.obj;
 
-describe('Donation Model and Schema', () => {
+describe('Contact Model and Schema', () => {
 
   it('should define the createdAt property model', () => {
     expect(timestamps.createdAt.type).to.equal(Date, 'Expected type to equal Date');
@@ -54,34 +53,33 @@ describe('Donation Model and Schema', () => {
     expect(audit.updatedWith.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the estimatedValue property model', () => {
-    expect(estimatedValue.type).to.equal(Number, 'Expected type to equal Number');
-    expect(estimatedValue.required).to.equal(true, 'Expected required to equal true');
-    expect(estimatedValue.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the name property model', () => {
+    expect(name.type).to.equal(String, 'Expected type to equal String');
+    expect(name.required).to.equal(true, 'Expected required to equal true');
+    expect(name.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the relativeSize property model', () => {
-    expect(relativeSize.type).to.equal(String, 'Expected type to equal String');
-    expect(relativeSize.enum.length).to.equal(5, 'Expected type to have 5 records');
-    expect(relativeSize.enum[0]).to.equal('few-bags', 'Expected enum to include few-bags');
-    expect(relativeSize.enum[1]).to.equal('many-bags', 'Expected enum to include many-bags');
-    expect(relativeSize.enum[2]).to.equal('car-full', 'Expected enum to include car-full');
-    expect(relativeSize.enum[3]).to.equal('van-full', 'Expected enum to include van-full');
-    expect(relativeSize.enum[4]).to.equal('box-truck', 'Expected enum to include box-truck');
-    expect(relativeSize.required).to.equal(true, 'Expected required to equal true');
-    expect(relativeSize.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the value property model', () => {
+    expect(value.type).to.equal(String, 'Expected type to equal String');
+    expect(value.required).to.equal(true, 'Expected required to equal true');
+    expect(value.unique).to.equal(true, 'Expected unique to equal true');
   });
 
-  it('should define the summary property model', () => {
-    expect(summary.type).to.equal(String, 'Expected type to equal String');
-    expect(summary.required).to.equal(false, 'Expected required to equal false');
-    expect(summary.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the type property model', () => {
+    expect(type.type).to.equal(String, 'Expected type to equal String');
+    expect(type.enum.length).to.equal(4, 'Expected type to have 5 records');
+    expect(type.enum[0]).to.equal('email', 'Expected enum to include email');
+    expect(type.enum[1]).to.equal('href', 'Expected enum to include href');
+    expect(type.enum[2]).to.equal('voice', 'Expected enum to include voice');
+    expect(type.enum[3]).to.equal('text', 'Expected enum to include text');
+    expect(type.required).to.equal(true, 'Expected required to equal true');
+    expect(type.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the image property model', () => {
-    expect(image.type).to.equal(String, 'Expected type to equal String');
-    expect(image.required).to.equal(false, 'Expected required to equal false');
-    expect(image.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the isPreferred property model', () => {
+    expect(isPreferred.type).to.equal(Boolean, 'Expected type to equal Boolean');
+    expect(isPreferred.required).to.equal(true, 'Expected required to equal true');
+    expect(isPreferred.unique).to.equal(false, 'Expected unique to equal false');
   });
 
 });

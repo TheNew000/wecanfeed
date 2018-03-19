@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
 import Location from './location';
+import Product from './product';
+import Contact from './contact';
 
 export const Schema = new mongoose.Schema({
 
@@ -13,12 +15,41 @@ export const Schema = new mongoose.Schema({
 
     updatedAt: {
       type: Date,
+      required: false,
+      unique: false
+    },
+
+    removedAt: {
+      type: Date,
+      required: false,
+      unique: false
+    }
+  },
+
+  audit: {
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
       unique: false
     },
 
-    canceledAt: {
-      type: Date,
+    updatedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: false,
+      unique: false
+    },
+
+    updatedWith: {
+      type: String,
+      required: false,
+      unique: false
+    },
+
+    removedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: false,
       unique: false
     }
@@ -28,25 +59,43 @@ export const Schema = new mongoose.Schema({
     type: String,
     required: true,
     unique: false
-
   },
 
-  summary: {
+  description: {
     type: String,
     required: false,
     unique: false
   },
 
-  website: {
-    type: String,
+  industryVerticals: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Tag',
+    required: true,
+    unique: false
+  },
+
+  contacts: {
+    type: [Contact.Schema],
     required: false,
     unique: false
   },
 
-  agreements: {
+  inventory: {
+    type: [Product.Schema],
+    required: false,
+    unique: false
+  },
+
+  donationAgreements: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'DonationAgreement',
     required: false,
+    unique: false
+  },
+
+  offersDonations: {
+    type: Boolean,
+    required: true,
     unique: false
   },
 
@@ -54,6 +103,22 @@ export const Schema = new mongoose.Schema({
     type: Location.Schema,
     required: true,
     unique: false
+  },
+
+  orders: {
+    fulfilled: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: 'Order',
+      required: false,
+      unique: false
+    },
+
+    pending: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: 'Order',
+      required: false,
+      unique: false
+    },
   },
 
   team: {
@@ -81,20 +146,12 @@ export const Schema = new mongoose.Schema({
 
     },
 
-    contributors: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: 'User',
-      required: false,
-      unique: false
-    },
-
-    transporters: {
+    members: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: 'User',
       required: false,
       unique: false
     }
-
   }
 
 }, {

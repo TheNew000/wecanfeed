@@ -4,12 +4,15 @@ import 'mocha';
 
 import User from '../../src/domain-model/user';
 import user, { staticEmailUser } from '../../mocks/user';
+import Contact from '../../src/domain-model/contact';
 
 const {
   timestamps,
+  audit,
   name,
   username,
-  contact
+  email,
+  contacts
 } = User.Schema.obj;
 
 describe('User Model and Schema', () => {
@@ -22,8 +25,20 @@ describe('User Model and Schema', () => {
 
   it('should define the updatedAt property model', () => {
     expect(timestamps.updatedAt.type).to.equal(Date, 'Expected type to equal Date');
-    expect(timestamps.updatedAt.required).to.equal(true, 'Expected required to equal true');
+    expect(timestamps.updatedAt.required).to.equal(false, 'Expected required to equal false');
     expect(timestamps.updatedAt.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the removedAt property model', () => {
+    expect(timestamps.removedAt.type).to.equal(Date, 'Expected type to equal Date');
+    expect(timestamps.removedAt.required).to.equal(false, 'Expected required to equal false');
+    expect(timestamps.removedAt.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the updatedWith property model', () => {
+    expect(audit.updatedWith.type).to.equal(String, 'Expected type to equal String');
+    expect(audit.updatedWith.required).to.equal(false, 'Expected required to equal false');
+    expect(audit.updatedWith.unique).to.equal(false, 'Expected unique to equal false');
   });
 
   it('should define the first property model', () => {
@@ -45,35 +60,15 @@ describe('User Model and Schema', () => {
   });
 
   it('should define the email property model', () => {
-    expect(contact.email.type).to.equal(String, 'Expected type to equal String');
-    expect(contact.email.required).to.equal(true, 'Expected required to equal true');
-    expect(contact.email.unique).to.equal(true, 'Expected unique to equal true');
+    expect(email.type).to.equal(String, 'Expected type to equal String');
+    expect(email.required).to.equal(true, 'Expected required to equal true');
+    expect(email.unique).to.equal(true, 'Expected unique to equal true');
   });
 
-  it('should define the voice property model', () => {
-    expect(contact.voice.type).to.equal(String, 'Expected type to equal String');
-    expect(contact.voice.required).to.equal(false, 'Expected required to equal false');
-    expect(contact.voice.unique).to.equal(true, 'Expected unique to equal true');
-  });
-
-  it('should define the text property model', () => {
-    expect(contact.text.type).to.equal(String, 'Expected type to equal String');
-    expect(contact.text.required).to.equal(false, 'Expected required to equal false');
-    expect(contact.text.unique).to.equal(true, 'Expected unique to equal true');
-  });
-
-  it('should define the preferredType property model', () => {
-    expect(contact.preferredType.type).to.equal(String, 'Expected type to equal String');
-    expect(contact.preferredType.enum.length).to.equal(3, 'Expected enum to have 3 records');
-    expect(contact.preferredType.enum[0]).to.equal('email', 'Expected enum to include email');
-    expect(contact.preferredType.enum[1]).to.equal('text', 'Expected enum to include text');
-    expect(contact.preferredType.enum[2]).to.equal('voice', 'Expected enum to include voice');
-    expect(contact.preferredType.required).to.equal(false, 'Expected required to equal false');
-    expect(contact.preferredType.unique).to.equal(false, 'Expected unique to equal false');
-  });
-
-  it('should a virtual for the preferred contact info', () => {
-    expect(staticEmailUser.contact.preferred).to.equal('bob@smith.com', 'Expected preferred to equal bob@smith.com');
+  it('should define the contacts property model', () => {
+    expect(contacts.type[0]).to.equal(Contact.Schema, 'Expected type to equal Contact.Schema');
+    expect(contacts.required).to.equal(false, 'Expected required to equal false');
+    expect(contacts.unique).to.equal(false, 'Expected unique to equal false');
   });
 
 });
