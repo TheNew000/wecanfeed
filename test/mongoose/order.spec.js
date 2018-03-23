@@ -2,18 +2,19 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import DonationAgreementNote from '../../src/mongoose/donation-agreement-note';
-import donationAgreementNote from '../../mocks/donation-agreement-note';
+import Order from '../../src/mongoose/order';
+import Product from '../../src/mongoose/product';
 
 const {
   timestamps,
   audit,
-  comments,
-  isNegativeFeedback,
-  createdBy
-} = DonationAgreementNote.Schema.obj;
+  provider,
+  consumer,
+  consumerGroup,
+  products
+} = Order.Schema.obj;
 
-describe('DonationAgreementNote Model and Schema', () => {
+describe('Order Mongoose Model and Schema', () => {
 
   it('should define the createdAt property model', () => {
     expect(timestamps.createdAt.type).to.equal(Date, 'Expected type to equal Date');
@@ -53,16 +54,39 @@ describe('DonationAgreementNote Model and Schema', () => {
     expect(audit.updatedWith.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the comments property model', () => {
-    expect(comments.type).to.equal(String, 'Expected type to equal String');
-    expect(comments.required).to.equal(true, 'Expected required to equal true');
-    expect(comments.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the provider property model', () => {
+    expect(provider.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal mongoose.Schema.Types.ObjectId');
+    expect(provider.ref).to.equal('Provider', 'Expected type to equal Provider');
+    expect(provider.required).to.equal(false, 'Expected required to equal false');
+    expect(provider.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the isNegativeFeedback property model', () => {
-    expect(isNegativeFeedback.type).to.equal(Boolean, 'Expected type to equal Boolean');
-    expect(isNegativeFeedback.required).to.equal(true, 'Expected required to equal true');
-    expect(isNegativeFeedback.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the consumer property model', () => {
+    expect(consumer.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal mongoose.Schema.Types.ObjectId');
+    expect(consumer.ref).to.equal('Consumer', 'Expected type to equal Consumer');
+    expect(consumer.required).to.equal(false, 'Expected required to equal false');
+    expect(consumer.unique).to.equal(false, 'Expected unique to equal false');
   });
+
+  it('should define the consumerGroup property model', () => {
+    expect(consumerGroup.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal mongoose.Schema.Types.ObjectId');
+    expect(consumerGroup.ref).to.equal('ConsumerGroup', 'Expected type to equal ConsumerGroup');
+    expect(consumerGroup.required).to.equal(false, 'Expected required to equal false');
+    expect(consumerGroup.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the provider property model', () => {
+    expect(provider.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal mongoose.Schema.Types.ObjectId');
+    expect(provider.ref).to.equal('Provider', 'Expected type to equal Provider');
+    expect(provider.required).to.equal(false, 'Expected required to equal false');
+    expect(provider.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the products property model', () => {
+    expect(products.type[0]).to.equal(Product.Schema, 'Expected type to equal Product.Schema');
+    expect(products.required).to.equal(false, 'Expected required to equal false');
+    expect(products.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
 
 });

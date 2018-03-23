@@ -2,17 +2,21 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import Tag from '../../src/mongoose/tag';
+import Product from '../../src/mongoose/product';
+import ValueDefinition from '../../src/mongoose/value-definition';
 
 const {
   timestamps,
   audit,
   name,
-  key,
-  parent
-} = Tag.Schema.obj;
+  description,
+  category,
+  tags,
+  prices,
+  totalQuantityAvailable
+} = Product.Schema.obj;
 
-describe('Tag Model and Schema', () => {
+describe('Product Mongoose Model and Schema', () => {
 
   it('should define the createdAt property model', () => {
     expect(timestamps.createdAt.type).to.equal(Date, 'Expected type to equal Date');
@@ -55,20 +59,38 @@ describe('Tag Model and Schema', () => {
   it('should define the name property model', () => {
     expect(name.type).to.equal(String, 'Expected type to equal String');
     expect(name.required).to.equal(true, 'Expected required to equal true');
-    expect(name.unique).to.equal(true, 'Expected unique to equal true');
+    expect(name.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the key property model', () => {
-    expect(key.type).to.equal(String, 'Expected type to equal String');
-    expect(key.required).to.equal(true, 'Expected required to equal true');
-    expect(key.unique).to.equal(true, 'Expected unique to equal true');
+  it('should define the description property model', () => {
+    expect(description.type).to.equal(String, 'Expected type to equal String');
+    expect(description.required).to.equal(true, 'Expected required to equal true');
+    expect(description.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the parent property model', () => {
-    expect(parent.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal mongoose.Schema.Types.ObjectId');
-    expect(parent.ref).to.equal('Tag', 'Expected type to equal Tag');
-    expect(parent.required).to.equal(false, 'Expected required to equal false');
-    expect(parent.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the category property model', () => {
+    expect(category.type).to.equal(String, 'Expected type to equal String');
+    expect(category.required).to.equal(true, 'Expected required to equal true');
+    expect(category.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the tags property model', () => {
+    expect(tags.type[0]).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal mongoose.Schema.Types.ObjectId');
+    expect(tags.ref).to.equal('Tag', 'Expected type to equal Tag');
+    expect(tags.required).to.equal(true, 'Expected required to equal true');
+    expect(tags.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the prices property model', () => {
+    expect(prices.type[0]).to.equal(ValueDefinition.Schema, 'Expected type to equal ValueDefinition.Schema');
+    expect(prices.required).to.equal(true, 'Expected required to equal true');
+    expect(prices.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the totalQuantityAvailable property model', () => {
+    expect(totalQuantityAvailable.type).to.equal(Number, 'Expected type to equal Number');
+    expect(totalQuantityAvailable.required).to.equal(true, 'Expected required to equal true');
+    expect(totalQuantityAvailable.unique).to.equal(false, 'Expected unique to equal false');
   });
 
 });

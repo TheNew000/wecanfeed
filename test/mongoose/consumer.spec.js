@@ -2,17 +2,24 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import Donation from '../../src/mongoose/donation';
-import DonationReceipt from '../../src/mongoose/donation-receipt';
-import donationReceipt from '../../mocks/donation-receipt';
+import Consumer from '../../src/mongoose/consumer';
+import Location from '../../src/mongoose/location';
+import Product from '../../src/mongoose/product';
+import Contact from '../../src/mongoose/contact';
+
 
 const {
   timestamps,
-  donation,
-  audit
-} = DonationReceipt.Schema.obj;
+  audit,
+  account,
+  industryVerticals,
+  shoppingList,
+  acceptsDonations,
+  donationAgreements,
+  location
+} = Consumer.Schema.obj;
 
-describe('DonationReceipt Model and Schema', () => {
+describe('Consumer Mongoose Model and Schema', () => {
 
   it('should define the createdAt property model', () => {
     expect(timestamps.createdAt.type).to.equal(Date, 'Expected type to equal Date');
@@ -30,18 +37,6 @@ describe('DonationReceipt Model and Schema', () => {
     expect(timestamps.removedAt.type).to.equal(Date, 'Expected type to equal Date');
     expect(timestamps.removedAt.required).to.equal(false, 'Expected required to equal false');
     expect(timestamps.removedAt.unique).to.equal(false, 'Expected unique to equal false');
-  });
-
-  it('should define the claimedAt property model', () => {
-    expect(timestamps.claimedAt.type).to.equal(Date, 'Expected type to equal Date');
-    expect(timestamps.claimedAt.required).to.equal(false, 'Expected required to equal false');
-    expect(timestamps.claimedAt.unique).to.equal(false, 'Expected unique to equal false');
-  });
-
-  it('should define the transferredAt property model', () => {
-    expect(timestamps.transferredAt.type).to.equal(Date, 'Expected type to equal Date');
-    expect(timestamps.transferredAt.required).to.equal(false, 'Expected required to equal false');
-    expect(timestamps.transferredAt.unique).to.equal(false, 'Expected unique to equal false');
   });
 
   it('should define the createdBy property model', () => {
@@ -71,24 +66,36 @@ describe('DonationReceipt Model and Schema', () => {
     expect(audit.removedBy.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the claimedBy property model', () => {
-    expect(audit.claimedBy.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal ObjectId');
-    expect(audit.claimedBy.ref).to.equal('User', 'Expected ref to equal User');
-    expect(audit.claimedBy.required).to.equal(false, 'Expected required to equal false');
-    expect(audit.claimedBy.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the account property model', () => {
+    expect(account.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal ObjectId');
+    expect(account.ref).to.equal('User', 'Expected ref to equal User');
+    expect(account.required).to.equal(true, 'Expected required to equal true');
+    expect(account.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the transferredBy property model', () => {
-    expect(audit.transferredBy.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal ObjectId');
-    expect(audit.transferredBy.ref).to.equal('User', 'Expected ref to equal User');
-    expect(audit.transferredBy.required).to.equal(false, 'Expected required to equal false');
-    expect(audit.transferredBy.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the shoppingList property model', () => {
+    expect(shoppingList.type[0]).to.equal(Product.Schema, 'Expected type to equal Product.Schema');
+    expect(shoppingList.required).to.equal(false, 'Expected required to equal false');
+    expect(shoppingList.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the donation property model', () => {
-    expect(donation.type).to.equal(Donation.Schema, 'Expected type to equal Donation.Schema');
-    expect(donation.required).to.equal(true, 'Expected required to equal true');
-    expect(donation.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the acceptsDonations property model', () => {
+    expect(acceptsDonations.type).to.equal(Boolean, 'Expected type to equal Boolean');
+    expect(acceptsDonations.required).to.equal(true, 'Expected required to equal true');
+    expect(acceptsDonations.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the donationAgreements property model', () => {
+    expect(donationAgreements.type[0]).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal ObjectId');
+    expect(donationAgreements.ref).to.equal('DonationAgreement', 'Expected ref to equal DonationAgreement');
+    expect(donationAgreements.required).to.equal(false, 'Expected required to equal false');
+    expect(donationAgreements.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the location property model', () => {
+    expect(location.type).to.equal(Location.Schema, 'Expected type to equal Location.Schema');
+    expect(location.required).to.equal(true, 'Expected required to equal true');
+    expect(location.unique).to.equal(false, 'Expected unique to equal false');
   });
 
 });

@@ -2,19 +2,17 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import DonationAgreement from '../../src/mongoose/donation-agreement';
-import DonationAgreementNote from '../../src/mongoose/donation-agreement-note';
-import DonationReceipt from '../../src/mongoose/donation-receipt';
-import donationAgreement from '../../mocks/donation-agreement';
+import Tag from '../../src/mongoose/tag';
 
 const {
   timestamps,
   audit,
-  notes,
-  receipts
-} = DonationAgreement.Schema.obj;
+  name,
+  key,
+  parent
+} = Tag.Schema.obj;
 
-describe('DonationAgreement Model and Schema', () => {
+describe('Tag Mongoose Model and Schema', () => {
 
   it('should define the createdAt property model', () => {
     expect(timestamps.createdAt.type).to.equal(Date, 'Expected type to equal Date');
@@ -54,16 +52,23 @@ describe('DonationAgreement Model and Schema', () => {
     expect(audit.updatedWith.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the notes property model', () => {
-    expect(notes.type[0]).to.equal(DonationAgreementNote.Schema, 'Expected type to equal DonationAgreementNote.Schema');
-    expect(notes.required).to.equal(false, 'Expected required to equal false');
-    expect(notes.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the name property model', () => {
+    expect(name.type).to.equal(String, 'Expected type to equal String');
+    expect(name.required).to.equal(true, 'Expected required to equal true');
+    expect(name.unique).to.equal(true, 'Expected unique to equal true');
   });
 
-  it('should define the receipts property model', () => {
-    expect(receipts.type[0]).to.equal(DonationReceipt.Schema, 'Expected type to equal DonationReceipt.Schema');
-    expect(receipts.required).to.equal(false, 'Expected required to equal false');
-    expect(receipts.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the key property model', () => {
+    expect(key.type).to.equal(String, 'Expected type to equal String');
+    expect(key.required).to.equal(true, 'Expected required to equal true');
+    expect(key.unique).to.equal(true, 'Expected unique to equal true');
+  });
+
+  it('should define the parent property model', () => {
+    expect(parent.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal mongoose.Schema.Types.ObjectId');
+    expect(parent.ref).to.equal('Tag', 'Expected type to equal Tag');
+    expect(parent.required).to.equal(false, 'Expected required to equal false');
+    expect(parent.unique).to.equal(false, 'Expected unique to equal false');
   });
 
 });

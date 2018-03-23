@@ -2,20 +2,17 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import Location from '../../src/mongoose/location';
-import location from '../../mocks/location';
+import Donation from '../../src/mongoose/donation';
+import DonationReceipt from '../../src/mongoose/donation-receipt';
+import donationReceipt from '../../mocks/donation-receipt';
 
 const {
   timestamps,
-  audit,
-  streetAddress,
-  city,
-  state,
-  zipcode,
-  coordinates
-} = Location.Schema.obj;
+  donation,
+  audit
+} = DonationReceipt.Schema.obj;
 
-describe('Location Model and Schema', () => {
+describe('DonationReceipt Mongoose Model and Schema', () => {
 
   it('should define the createdAt property model', () => {
     expect(timestamps.createdAt.type).to.equal(Date, 'Expected type to equal Date');
@@ -33,6 +30,18 @@ describe('Location Model and Schema', () => {
     expect(timestamps.removedAt.type).to.equal(Date, 'Expected type to equal Date');
     expect(timestamps.removedAt.required).to.equal(false, 'Expected required to equal false');
     expect(timestamps.removedAt.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the claimedAt property model', () => {
+    expect(timestamps.claimedAt.type).to.equal(Date, 'Expected type to equal Date');
+    expect(timestamps.claimedAt.required).to.equal(false, 'Expected required to equal false');
+    expect(timestamps.claimedAt.unique).to.equal(false, 'Expected unique to equal false');
+  });
+
+  it('should define the transferredAt property model', () => {
+    expect(timestamps.transferredAt.type).to.equal(Date, 'Expected type to equal Date');
+    expect(timestamps.transferredAt.required).to.equal(false, 'Expected required to equal false');
+    expect(timestamps.transferredAt.unique).to.equal(false, 'Expected unique to equal false');
   });
 
   it('should define the createdBy property model', () => {
@@ -62,46 +71,24 @@ describe('Location Model and Schema', () => {
     expect(audit.removedBy.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the address.primary property model', () => {
-    expect(streetAddress.primary.type).to.equal(String, 'Expected type to equal String');
-    expect(streetAddress.primary.required).to.equal(true, 'Expected required to equal true');
-    expect(streetAddress.primary.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the claimedBy property model', () => {
+    expect(audit.claimedBy.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal ObjectId');
+    expect(audit.claimedBy.ref).to.equal('User', 'Expected ref to equal User');
+    expect(audit.claimedBy.required).to.equal(false, 'Expected required to equal false');
+    expect(audit.claimedBy.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the address.secondary property model', () => {
-    expect(streetAddress.secondary.type).to.equal(String, 'Expected type to equal String');
-    expect(streetAddress.secondary.required).to.equal(false, 'Expected required to equal false');
-    expect(streetAddress.secondary.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the transferredBy property model', () => {
+    expect(audit.transferredBy.type).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal ObjectId');
+    expect(audit.transferredBy.ref).to.equal('User', 'Expected ref to equal User');
+    expect(audit.transferredBy.required).to.equal(false, 'Expected required to equal false');
+    expect(audit.transferredBy.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the city property model', () => {
-    expect(city.type).to.equal(String, 'Expected type to equal String');
-    expect(city.required).to.equal(true, 'Expected required to equal true');
-    expect(city.unique).to.equal(false, 'Expected unique to equal false');
-  });
-
-  it('should define the state property model', () => {
-    expect(state.type).to.equal(String, 'Expected type to equal String');
-    expect(state.required).to.equal(true, 'Expected required to equal true');
-    expect(state.unique).to.equal(false, 'Expected unique to equal false');
-  });
-
-  it('should define the zipcode property model', () => {
-    expect(zipcode.type).to.equal(String, 'Expected type to equal String');
-    expect(zipcode.required).to.equal(true, 'Expected required to equal true');
-    expect(zipcode.unique).to.equal(false, 'Expected unique to equal false');
-  });
-
-  it('should define the coordinates.latitude property model', () => {
-    expect(coordinates.latitude.type).to.equal(Number, 'Expected type to equal String');
-    expect(coordinates.latitude.required).to.equal(true, 'Expected required to equal true');
-    expect(coordinates.latitude.unique).to.equal(false, 'Expected unique to equal false');
-  });
-
-  it('should define the coordinates.longitude property model', () => {
-    expect(coordinates.longitude.type).to.equal(Number, 'Expected type to equal String');
-    expect(coordinates.longitude.required).to.equal(true, 'Expected required to equal true');
-    expect(coordinates.longitude.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the donation property model', () => {
+    expect(donation.type).to.equal(Donation.Schema, 'Expected type to equal Donation.Schema');
+    expect(donation.required).to.equal(true, 'Expected required to equal true');
+    expect(donation.unique).to.equal(false, 'Expected unique to equal false');
   });
 
 });

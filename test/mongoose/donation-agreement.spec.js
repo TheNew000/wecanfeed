@@ -2,17 +2,19 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import ValueDefinition from '../../src/mongoose/value-definition';
+import DonationAgreement from '../../src/mongoose/donation-agreement';
+import DonationAgreementNote from '../../src/mongoose/donation-agreement-note';
+import DonationReceipt from '../../src/mongoose/donation-receipt';
+import donationAgreement from '../../mocks/donation-agreement';
 
 const {
   timestamps,
   audit,
-  price,
-  quantityRange,
-  quantityUnit
-} = ValueDefinition.Schema.obj;
+  notes,
+  receipts
+} = DonationAgreement.Schema.obj;
 
-describe('DonationAgreementNote Model and Schema', () => {
+describe('DonationAgreement Mongoose Model and Schema', () => {
 
   it('should define the createdAt property model', () => {
     expect(timestamps.createdAt.type).to.equal(Date, 'Expected type to equal Date');
@@ -52,22 +54,16 @@ describe('DonationAgreementNote Model and Schema', () => {
     expect(audit.updatedWith.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the price property model', () => {
-    expect(price.type).to.equal(Number, 'Expected type to equal Number');
-    expect(price.required).to.equal(true, 'Expected required to equal true');
-    expect(price.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the notes property model', () => {
+    expect(notes.type[0]).to.equal(DonationAgreementNote.Schema, 'Expected type to equal DonationAgreementNote.Schema');
+    expect(notes.required).to.equal(false, 'Expected required to equal false');
+    expect(notes.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the quantityRange property model', () => {
-    expect(quantityRange.type[0]).to.equal(Number, 'Expected type to equal Number');
-    expect(quantityRange.required).to.equal(true, 'Expected required to equal true');
-    expect(quantityRange.unique).to.equal(false, 'Expected unique to equal false');
-  });
-
-  it('should define the quantityUnit property model', () => {
-    expect(quantityUnit.type).to.equal(String, 'Expected type to equal String');
-    expect(quantityUnit.required).to.equal(true, 'Expected required to equal true');
-    expect(quantityUnit.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the receipts property model', () => {
+    expect(receipts.type[0]).to.equal(DonationReceipt.Schema, 'Expected type to equal DonationReceipt.Schema');
+    expect(receipts.required).to.equal(false, 'Expected required to equal false');
+    expect(receipts.unique).to.equal(false, 'Expected unique to equal false');
   });
 
 });

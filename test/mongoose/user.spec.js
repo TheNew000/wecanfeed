@@ -15,7 +15,7 @@ const {
   contacts
 } = User.Schema.obj;
 
-describe('User Model and Schema', () => {
+describe('User Mongoose Model and Schema', () => {
 
   it('should define the createdAt property model', () => {
     expect(timestamps.createdAt.type).to.equal(Date, 'Expected type to equal Date');

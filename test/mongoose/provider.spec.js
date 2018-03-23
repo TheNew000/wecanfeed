@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import ConsumerGroup from '../../src/mongoose/consumer-group';
+import Provider from '../../src/mongoose/provider';
 import Location from '../../src/mongoose/location';
 import Contact from '../../src/mongoose/contact';
 import Product from '../../src/mongoose/product';
@@ -13,17 +13,16 @@ const {
   name,
   description,
   contacts,
-  shoppingList,
+  inventory,
   industryVerticals,
   donationAgreements,
-  acceptsDonations,
+  offersDonations,
   orders,
   location,
-  team,
-  members
-} = ConsumerGroup.Schema.obj;
+  team
+} = Provider.Schema.obj;
 
-describe('ConsumerGroup Model and Schema', () => {
+describe('Provider Mongoose Model and Schema', () => {
 
   it('should define the createdAt property model', () => {
     expect(timestamps.createdAt.type).to.equal(Date, 'Expected type to equal Date');
@@ -85,14 +84,14 @@ describe('ConsumerGroup Model and Schema', () => {
   it('should define the industryVerticals property model', () => {
     expect(industryVerticals.type[0]).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal ObjectId');
     expect(industryVerticals.ref).to.equal('Tag', 'Expected ref to equal User');
-    expect(industryVerticals.required).to.equal(false, 'Expected required to equal false');
+    expect(industryVerticals.required).to.equal(true, 'Expected required to equal true');
     expect(industryVerticals.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the shoppingList property model', () => {
-    expect(shoppingList.type[0]).to.equal(Product.Schema, 'Expected type to equal Product.Schema');
-    expect(shoppingList.required).to.equal(false, 'Expected required to equal false');
-    expect(shoppingList.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the inventory property model', () => {
+    expect(inventory.type[0]).to.equal(Product.Schema, 'Expected type to equal Product.Schema');
+    expect(inventory.required).to.equal(false, 'Expected required to equal false');
+    expect(inventory.unique).to.equal(false, 'Expected unique to equal false');
   });
 
   it('should define the contacts property model', () => {
@@ -101,10 +100,10 @@ describe('ConsumerGroup Model and Schema', () => {
     expect(contacts.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the acceptsDonations property model', () => {
-    expect(acceptsDonations.type).to.equal(Boolean, 'Expected type to equal Boolean');
-    expect(acceptsDonations.required).to.equal(true, 'Expected required to equal true');
-    expect(acceptsDonations.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the offersDonations property model', () => {
+    expect(offersDonations.type).to.equal(Boolean, 'Expected type to equal Product.Schema');
+    expect(offersDonations.required).to.equal(true, 'Expected required to equal true');
+    expect(offersDonations.unique).to.equal(false, 'Expected unique to equal false');
   });
 
   it('should define the donationAgreements property model', () => {
@@ -116,7 +115,7 @@ describe('ConsumerGroup Model and Schema', () => {
 
   it('should define the location property model', () => {
     expect(location.type).to.equal(Location.Schema, 'Expected type to equal Location.Schema');
-    expect(location.required).to.equal(false, 'Expected required to equal false');
+    expect(location.required).to.equal(true, 'Expected required to equal true');
     expect(location.unique).to.equal(false, 'Expected unique to equal false');
   });
 
@@ -160,13 +159,6 @@ describe('ConsumerGroup Model and Schema', () => {
     expect(team.members.ref).to.equal('User', 'Expected ref to equal User');
     expect(team.members.required).to.equal(false, 'Expected required to equal false');
     expect(team.members.unique).to.equal(false, 'Expected unique to equal false');
-  });
-
-  it('should define the members property model', () => {
-    expect(members.type[0]).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal ObjectId');
-    expect(members.ref).to.equal('Consumer', 'Expected ref to equal User');
-    expect(members.required).to.equal(false, 'Expected required to equal false');
-    expect(members.unique).to.equal(false, 'Expected unique to equal false');
   });
 
 });

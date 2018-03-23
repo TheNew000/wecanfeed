@@ -2,21 +2,18 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import Product from '../../src/mongoose/product';
-import ValueDefinition from '../../src/mongoose/value-definition';
+import Contact from '../../src/mongoose/contact';
 
 const {
   timestamps,
   audit,
   name,
-  description,
-  category,
-  tags,
-  prices,
-  totalQuantityAvailable
-} = Product.Schema.obj;
+  value,
+  type,
+  isPreferred
+} = Contact.Schema.obj;
 
-describe('Product Model and Schema', () => {
+describe('Contact Mongoose Model and Schema', () => {
 
   it('should define the createdAt property model', () => {
     expect(timestamps.createdAt.type).to.equal(Date, 'Expected type to equal Date');
@@ -62,35 +59,27 @@ describe('Product Model and Schema', () => {
     expect(name.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the description property model', () => {
-    expect(description.type).to.equal(String, 'Expected type to equal String');
-    expect(description.required).to.equal(true, 'Expected required to equal true');
-    expect(description.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the value property model', () => {
+    expect(value.type).to.equal(String, 'Expected type to equal String');
+    expect(value.required).to.equal(true, 'Expected required to equal true');
+    expect(value.unique).to.equal(true, 'Expected unique to equal true');
   });
 
-  it('should define the category property model', () => {
-    expect(category.type).to.equal(String, 'Expected type to equal String');
-    expect(category.required).to.equal(true, 'Expected required to equal true');
-    expect(category.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the type property model', () => {
+    expect(type.type).to.equal(String, 'Expected type to equal String');
+    expect(type.enum.length).to.equal(4, 'Expected type to have 5 records');
+    expect(type.enum[0]).to.equal('email', 'Expected enum to include email');
+    expect(type.enum[1]).to.equal('href', 'Expected enum to include href');
+    expect(type.enum[2]).to.equal('voice', 'Expected enum to include voice');
+    expect(type.enum[3]).to.equal('text', 'Expected enum to include text');
+    expect(type.required).to.equal(true, 'Expected required to equal true');
+    expect(type.unique).to.equal(false, 'Expected unique to equal false');
   });
 
-  it('should define the tags property model', () => {
-    expect(tags.type[0]).to.equal(mongoose.Schema.Types.ObjectId, 'Expected type to equal mongoose.Schema.Types.ObjectId');
-    expect(tags.ref).to.equal('Tag', 'Expected type to equal Tag');
-    expect(tags.required).to.equal(true, 'Expected required to equal true');
-    expect(tags.unique).to.equal(false, 'Expected unique to equal false');
-  });
-
-  it('should define the prices property model', () => {
-    expect(prices.type[0]).to.equal(ValueDefinition.Schema, 'Expected type to equal ValueDefinition.Schema');
-    expect(prices.required).to.equal(true, 'Expected required to equal true');
-    expect(prices.unique).to.equal(false, 'Expected unique to equal false');
-  });
-
-  it('should define the totalQuantityAvailable property model', () => {
-    expect(totalQuantityAvailable.type).to.equal(Number, 'Expected type to equal Number');
-    expect(totalQuantityAvailable.required).to.equal(true, 'Expected required to equal true');
-    expect(totalQuantityAvailable.unique).to.equal(false, 'Expected unique to equal false');
+  it('should define the isPreferred property model', () => {
+    expect(isPreferred.type).to.equal(Boolean, 'Expected type to equal Boolean');
+    expect(isPreferred.required).to.equal(true, 'Expected required to equal true');
+    expect(isPreferred.unique).to.equal(false, 'Expected unique to equal false');
   });
 
 });
