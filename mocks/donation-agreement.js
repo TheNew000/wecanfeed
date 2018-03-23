@@ -1,7 +1,7 @@
 import faker from 'faker';
 import moment from 'moment';
 
-import DonationAgreement from '../src/domain-model/donation-agreement';
+import DonationAgreement from '../src/mongoose/donation-agreement';
 
 const now = Date.now();
 

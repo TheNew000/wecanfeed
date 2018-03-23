@@ -14,18 +14,18 @@ mongoose.connection.close();
 // import assignUsers from './helpers/assign-users';
 // import assignAgreements from './helpers/assign-agreements';
 //
-// import User from '../src/domain-model/user';
+// import User from '../src/mongoose/user';
 //
-// import Consumer from '../src/domain-model/consumer';
+// import Consumer from '../src/mongoose/consumer';
 // import consumer from '../mocks/consumer';
 //
-// import Provider from '../src/domain-model/provider';
+// import Provider from '../src/mongoose/provider';
 // import provider from '../mocks/provider';
 //
-// import DonationAgreement from '../src/domain-model/donation-agreement';
+// import DonationAgreement from '../src/mongoose/donation-agreement';
 // import donationAgreement from '../mocks/donation-agreement';
 //
-// import DonationReceipt from '../src/domain-model/donation-receipt';
+// import DonationReceipt from '../src/mongoose/donation-receipt';
 // import donationReceipt from '../mocks/donation-receipt';
 //
 // import donationAgreementNote from '../mocks/donation-agreement-note';

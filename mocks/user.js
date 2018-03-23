@@ -1,7 +1,7 @@
 import faker from 'faker';
 import moment from 'moment';
 
-import User from '../src/domain-model/user';
+import User from '../src/mongoose/user';
 
 const now = Date.now();
 

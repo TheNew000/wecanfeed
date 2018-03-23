@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import Donation from '../../src/domain-model/donation';
+import Donation from '../../src/mongoose/donation';
 import donation from '../../mocks/donation';
 
 const {

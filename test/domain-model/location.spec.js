@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import Location from '../../src/domain-model/location';
+import Location from '../../src/mongoose/location';
 import location from '../../mocks/location';
 
 const {

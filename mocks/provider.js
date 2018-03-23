@@ -1,7 +1,7 @@
 import faker from 'faker';
 import moment from 'moment';
 
-import Provider from '../src/domain-model/provider';
+import Provider from '../src/mongoose/provider';
 import location from '../mocks/location';
 
 export default () => {

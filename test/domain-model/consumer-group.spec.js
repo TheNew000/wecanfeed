@@ -2,10 +2,10 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import ConsumerGroup from '../../src/domain-model/consumer-group';
-import Location from '../../src/domain-model/location';
-import Contact from '../../src/domain-model/contact';
-import Product from '../../src/domain-model/product';
+import ConsumerGroup from '../../src/mongoose/consumer-group';
+import Location from '../../src/mongoose/location';
+import Contact from '../../src/mongoose/contact';
+import Product from '../../src/mongoose/product';
 
 const {
   timestamps,

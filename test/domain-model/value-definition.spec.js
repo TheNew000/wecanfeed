@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import ValueDefinition from '../../src/domain-model/value-definition';
+import ValueDefinition from '../../src/mongoose/value-definition';
 
 const {
   timestamps,

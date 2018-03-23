@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import Tag from '../../src/domain-model/tag';
+import Tag from '../../src/mongoose/tag';
 
 const {
   timestamps,

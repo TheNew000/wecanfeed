@@ -1,6 +1,6 @@
 import seedHarness from './seed-harness';
 import populateMockArrays from './populate-mock-arrays';
-import User from '../../src/domain-model/user';
+import User from '../../src/mongoose/user';
 import user from '../../mocks/user';
 
 export default (count, parents, userGroupKey, contact = false) => {

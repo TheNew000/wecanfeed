@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import Order from '../../src/domain-model/order';
-import Product from '../../src/domain-model/product';
+import Order from '../../src/mongoose/order';
+import Product from '../../src/mongoose/product';
 
 const {
   timestamps,

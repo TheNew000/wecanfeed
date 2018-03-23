@@ -1,7 +1,7 @@
 import faker from 'faker';
 import moment from 'moment';
 
-import Consumer from '../src/domain-model/consumer';
+import Consumer from '../src/mongoose/consumer';
 import location from '../mocks/location';
 import user from '../mocks/location';
 

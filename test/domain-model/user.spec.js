@@ -2,9 +2,9 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 import 'mocha';
 
-import User from '../../src/domain-model/user';
+import User from '../../src/mongoose/user';
 import user, { staticEmailUser } from '../../mocks/user';
-import Contact from '../../src/domain-model/contact';
+import Contact from '../../src/mongoose/contact';
 
 const {
   timestamps,
