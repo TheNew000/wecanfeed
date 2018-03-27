@@ -14,9 +14,9 @@ class PublicNav extends Component {
   render() {
     return (
       <Nav>
-        <Link style={style} to='/sign-in'>Sign In</Link>
-        <Link style={style} to='/register'>Register</Link>
         <Link style={style} to='/'>How WeCanFeed can help</Link>
+        <Link style={style} to='/register'>Register</Link>
+        <Link style={style} to='/sign-in'>Sign In</Link>
       </Nav>
     );
   }

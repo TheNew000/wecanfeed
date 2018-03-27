@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import PublicNav from './../../navs/PublicNav';
@@ -8,11 +9,18 @@ import {
   WeCanFeedLogo as Logo
  } from './../../../design-language/components/layout';
 
+ const linkStyles = {
+   textDecoration: 'none'
+ };
+
 class PublicHeader extends Component {
   render() {
     return (
       <Header>
-        <Logo>We Can Feed!</Logo>
+        <Link style={linkStyles} to='/'>
+          <Logo>We Can Feed!</Logo>
+        </Link>
+
         <PublicNav />
       </Header>
     );
