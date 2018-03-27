@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import styled from 'styled-components';
 import { withRouter } from 'react-router-dom'
 import { connect } from "react-redux";
 
@@ -27,15 +26,12 @@ import MarketingForConsumer from './../MarketingForConsumer';
 import MarketingForConsumerGroup from './../MarketingForConsumerGroup';
 
 import { Screen } from './../../../design-language/components/layout';
-import colors from './../../../design-language/colors';
-import whitespace from './../../../design-language/whitespace';
 
 import { GET_USERS_REQUEST } from './../../../redux/reducers/interactions/user-management';
 
-
 export class App extends Component {
   render() {
-    const { didRequest, getUsers, error } = this.props;
+    // const { didRequest, getUsers, error } = this.props;
 
     // <div>
     //   {didRequest ? (

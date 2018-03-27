@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import colors from './../../design-language/colors';
-import whitespace from './../../design-language/whitespace';
 
 export const Footer = styled.footer`
   background: ${colors.backgrounds.lightGray};

@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { Search } from './../../../design-language/components/layout';
 
 import {
   Footer,
   FooterLinkGroup
 } from './../../../design-language/components/footers';
-import colors from './../../../design-language/colors';
-import whitespace from './../../../design-language/whitespace';
 
 class PublicFooter extends Component {
   render() {

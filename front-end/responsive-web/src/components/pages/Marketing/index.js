@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 
 import PublicHeader from './../../headers/PublicHeader';
 import MarketingNav from './../../navs/MarketingNav';
