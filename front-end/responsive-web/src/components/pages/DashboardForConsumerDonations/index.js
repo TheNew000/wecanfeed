@@ -4,30 +4,43 @@ import { Link } from 'react-router-dom';
 import PrivateHeader from './../../headers/PrivateHeader';
 import PrivateFooter from './../../footers/PrivateFooter';
 
-export class DashboardForConsumerDonation extends Component {
+import {
+  Page,
+  Content
+} from './../../../design-language/components/layout';
+
+import {
+  GenericFirstHeader
+} from './../../../design-language/elements';
+
+export class DashboardForConsumerDonations extends Component {
   render() {
     return (
-      <div>
+      <Page className="page">
         <PrivateHeader />
-        <h2>Consumer Donation Dashboard</h2>
-        <ul>
-          <li><Link to='/dashboard/consumer'>ConsumerDashboard</Link></li>
-          <li><Link to='/dashboard/consumer/shopping-list'>ConsumerShoppingListDashboard</Link></li>
-          <li><Link to='/dashboard/consumer/orders'>ConsumerOrderDashboard</Link></li>
-          <li><Link to='/dashboard/consumer/donations'>ConsumerDonationDashboard</Link></li>
-        </ul>
-        <ul>
-          <li>List donation offerings</li>
-          <li>Initiate donation agreement</li>
-          <li>Cancel donation agreement</li>
-          <li>Claim donation</li>
-          <li>Update donation status</li>
-          <li>Add donation agreement note</li>
-        </ul>
+
+        <Content className="content">
+          <GenericFirstHeader>Consumer Donations Dashboard</GenericFirstHeader>
+
+          <Link to='/dashboard/consumer'>ConsumerDashboard</Link>
+          <Link to='/dashboard/consumer/shopping-list'>ConsumerShoppingListDashboard</Link>
+          <Link to='/dashboard/consumer/orders'>ConsumerOrderDashboard</Link>
+          <Link to='/dashboard/consumer/donations'>ConsumerDonationDashboard</Link>
+
+          <ul>
+            <li>List donation offerings</li>
+            <li>Initiate donation agreement</li>
+            <li>Cancel donation agreement</li>
+            <li>Claim donation</li>
+            <li>Update donation status</li>
+            <li>Add donation agreement note</li>
+          </ul>
+        </Content>
+
         <PrivateFooter />
-      </div>
+      </Page>
     );
   }
 }
 
-export default DashboardForConsumerDonation;
+export default DashboardForConsumerDonations;

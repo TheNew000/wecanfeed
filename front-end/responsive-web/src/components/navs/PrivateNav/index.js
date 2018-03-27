@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { Nav } from './../../../design-language/components/navs';
+import whitespace from './../../../design-language/whitespace';
+
+const style = {
+  padding: `0 ${whitespace.standard}`,
+  textDecoration: 'none'
+};
 
 class PrivateNav extends Component {
   render() {
     return (
-      <div>
-        <ul>
-          <li>
-            <div>Search</div>
-          </li>
-          <li>
-            <Link to='/sign-in'>Sign Out</Link>
-          </li>
-          <li>
-            <Link to='/dashboard/consumer'>Comsumer Specifics</Link>
-          </li>
-          <li>
-            <Link to='/dashboard/consumer-group'>Comsumer Group Specifics</Link>
-          </li>
-          <li>
-            <Link to='/dashboard/provider'>Provider Specifics</Link>
-          </li>
-        </ul>
-      </div>
+      <Nav>
+        <Link style={style} to='/dashboard/provider'>Provider Specifics</Link>
+        <Link style={style} to='/dashboard/consumer'>Comsumer Specifics</Link>
+        <Link style={style} to='/dashboard/consumer-group'>Comsumer Group Specifics</Link>
+        <Link style={style} to='/sign-in'>Sign Out</Link>
+      </Nav>
     );
   }
 }

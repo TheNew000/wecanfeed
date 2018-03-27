@@ -33,6 +33,6 @@ ReactDOM.render(
       <App />
     </Router>
   </Provider>
-, document.getElementById('root'));
+, document.getElementsByTagName('body')[0]);
 
 registerServiceWorker();

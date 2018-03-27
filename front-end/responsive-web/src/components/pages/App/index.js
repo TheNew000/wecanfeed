@@ -26,23 +26,29 @@ import MarketingForProvider from './../MarketingForProvider';
 import MarketingForConsumer from './../MarketingForConsumer';
 import MarketingForConsumerGroup from './../MarketingForConsumerGroup';
 
+import { Screen } from './../../../design-language/components/layout';
 import colors from './../../../design-language/colors';
 import whitespace from './../../../design-language/whitespace';
 
 import { GET_USERS_REQUEST } from './../../../redux/reducers/interactions/user-management';
 
-const Article = styled.article`
-  background: ${colors.backgrounds.lightGray};
-  min-height: 100vh;
-  padding: ${whitespace.standard};
-`;
 
 export class App extends Component {
   render() {
     const { didRequest, getUsers, error } = this.props;
 
+    // <div>
+    //   {didRequest ? (
+    //     <button disabled>Requesting users...</button>
+    //   ) : (
+    //     <button onClick={getUsers}>Get users</button>
+    //   )}
+    //
+    //   {error && <p style={{ color: "red" }}>Uh oh - something went wrong!</p>}
+    // </div>
+
     return (
-      <Article>
+      <Screen className="screen">
         <Route exact path='/' component={Marketing} />
         <Route path='/we-can-help-you-sell' component={MarketingForProvider} />
         <Route path='/we-can-help-you-buy' component={MarketingForConsumer} />
@@ -69,16 +75,7 @@ export class App extends Component {
         <Route path='/dashboard/provider/orders' component={DashboardForProviderOrders} />
         <Route path='/dashboard/provider/team' component={DashboardForProviderTeam} />
         <Route path='/dashboard/provider/donations' component={DashboardForProviderDonations} />
-
-          {didRequest ? (
-            <button disabled>Requesting users...</button>
-          ) : (
-            <button onClick={getUsers}>Get users</button>
-          )}
-
-          {error && <p style={{ color: "red" }}>Uh oh - something went wrong!</p>}
-
-      </Article>
+      </Screen>
     );
   }
 };

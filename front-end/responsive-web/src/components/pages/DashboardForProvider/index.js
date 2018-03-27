@@ -4,23 +4,33 @@ import { Link } from 'react-router-dom';
 import PrivateHeader from './../../headers/PrivateHeader';
 import PrivateFooter from './../../footers/PrivateFooter';
 
-class DashboardForProvider extends Component {
+import {
+  Page,
+  Content
+} from './../../../design-language/components/layout';
+
+import {
+  GenericFirstHeader
+} from './../../../design-language/elements';
+
+export class DashboardForProvider extends Component {
   render() {
     return (
-      <div>
+      <Page className="page">
         <PrivateHeader />
-        <h2>Provider Dashboard</h2>
 
-        <ul>
-          <li><Link to='/dashboard/provider'>ProviderDashboard</Link></li>
-          <li><Link to='/dashboard/provider/inventory'>ProviderInventoryDashboard</Link></li>
-          <li><Link to='/dashboard/provider/team'>ProviderTeamDashboard</Link></li>
-          <li><Link to='/dashboard/provider/orders'>ProviderOrderDashboard</Link></li>
-          <li><Link to='/dashboard/provider/donations'>ProviderDonationDashboard</Link></li>
-        </ul>
+        <Content className="content">
+          <GenericFirstHeader>Provider Dashboard</GenericFirstHeader>
+
+          <Link to='/dashboard/provider'>ProviderDashboard</Link>
+          <Link to='/dashboard/provider/inventory'>ProviderInventoryDashboard</Link>
+          <Link to='/dashboard/provider/team'>ProviderTeamDashboard</Link>
+          <Link to='/dashboard/provider/orders'>ProviderOrderDashboard</Link>
+          <Link to='/dashboard/provider/donations'>ProviderDonationDashboard</Link>
+        </Content>
 
         <PrivateFooter />
-      </div>
+      </Page>
     );
   }
 }

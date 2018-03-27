@@ -4,26 +4,38 @@ import { Link } from 'react-router-dom';
 import PrivateHeader from './../../headers/PrivateHeader';
 import PrivateFooter from './../../footers/PrivateFooter';
 
+import {
+  Page,
+  Content
+} from './../../../design-language/components/layout';
+
+import {
+  GenericFirstHeader
+} from './../../../design-language/elements';
+
 export class DashboardForConsumerGroupShoppingList extends Component {
   render() {
     return (
-      <div>
+      <Page className="page">
         <PrivateHeader />
-        <h2>Consumer Group Shopping List Dashboard</h2>
-        <ul>
-          <li><Link to='/dashboard/consumer-group'>ConsumerGroupDashboard</Link></li>
-          <li><Link to='/dashboard/consumer-group/shopping-list'>ConsumerGroupShoppingListDashboard</Link></li>
-          <li><Link to='/dashboard/consumer-group/team'>ConsumerGroupTeamDashboard</Link></li>
-          <li><Link to='/dashboard/consumer-group/orders'>ConsumerGroupOrderDashboard</Link></li>
-          <li><Link to='/dashboard/consumer-group/donations'>ConsumerGroupDonationDashboard</Link></li>
-        </ul>
 
-        <ul>
-          <li>Add product</li>
-          <li>Update product</li>
-        </ul>
+        <Content className="content">
+          <GenericFirstHeader>Consumer Group Shopping List Dashboard</GenericFirstHeader>
+
+          <Link to='/dashboard/consumer-group'>ConsumerGroupDashboard</Link>
+          <Link to='/dashboard/consumer-group/shopping-list'>ConsumerGroupShoppingListDashboard</Link>
+          <Link to='/dashboard/consumer-group/team'>ConsumerGroupTeamDashboard</Link>
+          <Link to='/dashboard/consumer-group/orders'>ConsumerGroupOrderDashboard</Link>
+          <Link to='/dashboard/consumer-group/donations'>ConsumerGroupDonationDashboard</Link>
+
+          <ul>
+            <li>Add product</li>
+            <li>Update product</li>
+          </ul>
+        </Content>
+
         <PrivateFooter />
-      </div>
+      </Page>
     );
   }
 }

@@ -1,5 +1,6 @@
 html,
 body,
-#root {
+html > div,
+body > div {
   min-height: 100vh;
 }

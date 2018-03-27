@@ -4,27 +4,40 @@ import { Link } from 'react-router-dom';
 import PrivateHeader from './../../headers/PrivateHeader';
 import PrivateFooter from './../../footers/PrivateFooter';
 
-export class DashboardForConsumerOrder extends Component {
+import {
+  Page,
+  Content
+} from './../../../design-language/components/layout';
+
+import {
+  GenericFirstHeader
+} from './../../../design-language/elements';
+
+export class DashboardForConsumerOrders extends Component {
   render() {
     return (
-      <div>
+      <Page className="page">
         <PrivateHeader />
-        <h2>Consumer Order Dashboard</h2>
-        <ul>
-          <li><Link to='/dashboard/consumer'>ConsumerDashboard</Link></li>
-          <li><Link to='/dashboard/consumer/shopping-list'>ConsumerShoppingListDashboard</Link></li>
-          <li><Link to='/dashboard/consumer/orders'>ConsumerOrderDashboard</Link></li>
-          <li><Link to='/dashboard/consumer/donations'>ConsumerDonationDashboard</Link></li>
-        </ul>
-        <ul>
-          <li>Inspect local inventory</li>
-          <li>Initial order</li>
-          <li>Mark order as fulfilled</li>
-        </ul>
+
+        <Content className="content">
+          <GenericFirstHeader>Consumer Orders Dashboard</GenericFirstHeader>
+
+          <Link to='/dashboard/consumer'>ConsumerDashboard</Link>
+          <Link to='/dashboard/consumer/shopping-list'>ConsumerShoppingListDashboard</Link>
+          <Link to='/dashboard/consumer/orders'>ConsumerOrderDashboard</Link>
+          <Link to='/dashboard/consumer/donations'>ConsumerDonationDashboard</Link>
+
+          <ul>
+            <li>Inspect local inventory</li>
+            <li>Initial order</li>
+            <li>Mark order as fulfilled</li>
+          </ul>
+        </Content>
+
         <PrivateFooter />
-      </div>
+      </Page>
     );
   }
 }
 
-export default DashboardForConsumerOrder;
+export default DashboardForConsumerOrders;

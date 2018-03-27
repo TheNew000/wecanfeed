@@ -1,20 +1,34 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import PublicHeader from './../../headers/PublicHeader';
 import MarketingNav from './../../navs/MarketingNav';
 import PublicFooter from './../../footers/PublicFooter';
 
-export class MarketingForProvider extends Component {
+import {
+  Page,
+  Content
+} from './../../../design-language/components/layout';
+
+import {
+  GenericFirstHeader
+} from './../../../design-language/elements';
+
+export class Marketing extends Component {
   render() {
     return (
-      <div>
+      <Page className="page">
         <PublicHeader />
-        <h2>Provider Marketing</h2>
-        <MarketingNav />
+
+        <Content className="content">
+          <GenericFirstHeader>Provider Marketing</GenericFirstHeader>
+          <MarketingNav />
+        </Content>
+
         <PublicFooter />
-      </div>
+      </Page>
     );
   }
 }
 
-export default MarketingForProvider;
+export default Marketing;

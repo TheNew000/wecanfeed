@@ -4,32 +4,44 @@ import { Link } from 'react-router-dom';
 import PrivateHeader from './../../headers/PrivateHeader';
 import PrivateFooter from './../../footers/PrivateFooter';
 
-export class DashboardForConsumerGroupDonation extends Component {
+import {
+  Page,
+  Content
+} from './../../../design-language/components/layout';
+
+import {
+  GenericFirstHeader
+} from './../../../design-language/elements';
+
+export class DashboardForConsumerGroupDonations extends Component {
   render() {
     return (
-      <div>
+      <Page className="page">
         <PrivateHeader />
-        <h2>Consumer Group Donation Dashboard</h2>
-        <ul>
-          <li><Link to='/dashboard/consumer-group'>ConsumerGroupDashboard</Link></li>
-          <li><Link to='/dashboard/consumer-group/shopping-list'>ConsumerGroupShoppingListDashboard</Link></li>
-          <li><Link to='/dashboard/consumer-group/team'>ConsumerGroupTeamDashboard</Link></li>
-          <li><Link to='/dashboard/consumer-group/orders'>ConsumerGroupOrderDashboard</Link></li>
-          <li><Link to='/dashboard/consumer-group/donations'>ConsumerGroupDonationDashboard</Link></li>
-        </ul>
 
-        <ul>
-          <li>List donation offerings</li>
-          <li>Initiate donation agreement</li>
-          <li>Cancel donation agreement</li>
-          <li>Claim donation</li>
-          <li>Update donation status</li>
-          <li>Add donation agreement note</li>
-        </ul>
+        <Content className="content">
+          <GenericFirstHeader>Consumer Group Donations Dashboard</GenericFirstHeader>
+
+          <Link to='/dashboard/consumer-group'>ConsumerGroupDashboard</Link>
+          <Link to='/dashboard/consumer-group/shopping-list'>ConsumerGroupShoppingListDashboard</Link>
+          <Link to='/dashboard/consumer-group/team'>ConsumerGroupTeamDashboard</Link>
+          <Link to='/dashboard/consumer-group/orders'>ConsumerGroupOrderDashboard</Link>
+          <Link to='/dashboard/consumer-group/donations'>ConsumerGroupDonationDashboard</Link>
+
+          <ul>
+            <li>List donation offerings</li>
+            <li>Initiate donation agreement</li>
+            <li>Cancel donation agreement</li>
+            <li>Claim donation</li>
+            <li>Update donation status</li>
+            <li>Add donation agreement note</li>
+          </ul>
+        </Content>
+
         <PrivateFooter />
-      </div>
+      </Page>
     );
   }
 }
 
-export default DashboardForConsumerGroupDonation;
+export default DashboardForConsumerGroupDonations;

@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import PrivateHeader from './../../headers/PrivateHeader';
 import PrivateFooter from './../../footers/PrivateFooter';
 
+import {
+  Page,
+  Content
+} from './../../../design-language/components/layout';
+
+import {
+  GenericFirstHeader
+} from './../../../design-language/elements';
+
 export class Dashboard extends Component {
   render() {
     return (
-      <div>
+      <Page className="page">
         <PrivateHeader />
-        <h2>Dashboard</h2>
+
+        <Content className="content">
+          <GenericFirstHeader>Dashboard</GenericFirstHeader>
+        </Content>
+
         <PrivateFooter />
-      </div>
+      </Page>
     );
   }
 }
